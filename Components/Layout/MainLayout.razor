@@ -1,0 +1,18 @@
+@inherits LayoutComponentBase
+
+<div class="flex h-screen w-full bg-gray-800">
+    <NavMenu PageType="@PageType" />
+    <main class="relative z-0 flex-1 pb-8 px-6 py-8 bg-white">
+        @Body
+    </main>
+</div>
+
+ @code
+ {
+    public Type? PageType { get; set; }
+
+    protected override void OnParametersSet()
+    {
+       PageType = (this.Body?.Target as RouteView)?.RouteData.PageType;
+    }
+  }
